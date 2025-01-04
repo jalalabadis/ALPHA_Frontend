@@ -1,0 +1,75 @@
+[
+    {
+        "id": 1,
+        "texts": [
+          "Defeat the dragon in the northern cave.",
+          "Gather 10 healing herbs from the forest.",
+          "Escort the merchant to the nearby village.",
+          "Find the hidden treasure in the ruins.",
+          "Protect the village from bandits.",
+          "Hunt down the rogue knight causing chaos.",
+          "Deliver an important message to the king.",
+          "Investigate the mysterious disappearance of villagers.",
+          "Collect rare gemstones from the mountain mines.",
+          "Rescue the princess from the haunted castle.",
+          "Capture the escaped convict from the royal prison.",
+          "Retrieve the sacred artifact stolen by thieves.",
+          "Help the farmer fend off a pack of wolves.",
+          "Solve the riddle of the enchanted statue.",
+          "Forge an alliance with the neighboring kingdom.",
+          "Recover the lost pages of the ancient spellbook.",
+          "Save the shipwrecked sailors stranded on an island.",
+          "Defuse the conflict between rival clans.",
+          "Track down the elusive thief who stole a royal jewel.",
+          "Clear the abandoned mine of hostile creatures.",
+          "Uncover the secrets of the cursed forest.",
+          "Find the missing heirloom of the noble family.",
+          "Aid the alchemist in finding rare potion ingredients.",
+          "Destroy the necromancer's army of undead.",
+          "Rescue the trapped miners from a cave-in.",
+          "Tame the wild griffin terrorizing the region.",
+          "Assist the scholar in translating ancient runes.",
+          "Stop the evil cult from summoning a demon.",
+          "Locate the wandering bard with crucial information.",
+          "Rebuild the damaged bridge to restore trade routes."
+        ]
+      },
+
+      {
+        "id": 2,
+        "texts": [
+              "Clear swamp creatures.",
+              "Repair broken bridge.",
+              "Steal magical artifact.",
+              "Track lost caravan.",
+              "Challenge arena champion.",
+              "Escort merchant caravan.",
+              "Investigate haunted ruins.",
+              "Gather enchanted herbs.",
+              "Rescue kidnapped villagers.",
+              "Defend village raid.",
+              "Uncover masked thief.",
+              "Hunt rogue mage.",
+              "Deliver secret message.",
+              "Protect sacred shrine.",
+              "Find lost heirloom.",
+              "Negotiate warring factions.",
+              "Retrieve stolen plans.",
+              "Capture bandit leader.",
+              "Solve livestock mystery.",
+              "Assist alchemist potion.",
+              "Map unexplored caverns.",
+              "Free enslaved miners.",
+              "Win forest spirits.",
+              "Stop cult summoning.",
+              "Deliver mountain supplies.",
+              "Compete archery festival.",
+              "Convince reclusive inventor.",
+              "Investigate lake lights.",
+              "Recover forbidden tome.",
+              "Help craft weapon."
+            ]
+                    
+    }
+      
+]

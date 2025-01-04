@@ -1,0 +1,37 @@
+[
+    {   "id": 1,
+        "type": "MOUNT",
+        "img": "/assest/img/weapons.png"
+    },
+    {   "id": 2,
+        "type": "WEAPON",
+        "img": "/assest/img/weapons.png"
+    },
+    {   "id": 3,
+        "type": "oFFHAND",
+        "img": "/assest/img/weapons.png"
+    },
+    {   "id": 5,
+        "type": "BOOTS",
+        "img": "/assest/img/weapons.png"
+    },
+    {   "id": 8,
+        "type": "PANTS",
+        "img": "/assest/img/weapons.png"
+    },
+    {   "id": 10,
+        "type": "CHESTPLATE",
+        "img": "/assest/img/weapons.png"
+    },
+    {   "id": 12,
+        "type": "HELMET",
+        "img": "/assest/img/weapons.png"
+    },
+    {   "id": 18,
+        "type": "HELMET",
+        "img": "/assest/img/weapons.png"
+    },{   "id": 19,
+    "type": "HELMET",
+    "img": "/assest/img/weapons.png"
+}
+]

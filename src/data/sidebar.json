@@ -1,0 +1,46 @@
+[
+    {
+        "name": "Adventure",
+        "url": "Adventure",
+        "fontSize": "20px",
+        "bg": "default",
+        "bandage": ""
+    },
+    {
+        "name": "SHOP",
+        "url": "Shop",
+        "fontSize": "20px",
+        "bg": "default",
+        "bandage": ""
+    }, {
+        "name": "GUILD",
+        "url": "GUILD",
+        "fontSize": "20px",
+        "bg": "default",
+        "bandage": "COMING SOON"
+    }, {
+        "name": "MAP",
+        "url": "MAP",
+        "fontSize": "20px",
+        "bg": "default",
+        "bandage": "COMING SOON"
+    }, {
+        "name": "LEADERBOARD",
+        "url": "LEADERBOARD",
+        "fontSize": "18px",
+        "bg": "default",
+        "bandage": "COMING SOON"
+    }, {
+        "name": "DEPOSIT/WITHDRAW",
+        "url": "Bank",
+        "fontSize": "14px",
+        "bg": "bank-bg",
+        "bandage": ""
+    }, {
+        "name": "SETTINGS",
+        "url": "Settings",
+        "fontSize": "20px",
+        "bg": "default",
+        "bandage": "COMING SOON"
+    }
+]

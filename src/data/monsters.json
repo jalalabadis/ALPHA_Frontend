@@ -1,0 +1,53 @@
+[
+    {
+        "name": "zoom1",
+        "xp": 1,
+        "power": 0,
+        "avatar": "/assest/img/Monster.jpg",
+        "weapon": [
+            { "name": "hammer", "power": 0, "graphics": "🎈", "effect": "🎆" }
+
+          ]
+    },
+    {
+        "name": "zoom2",
+        "xp": 200000,
+        "power": 100,
+        "avatar": "/assest/img/Monster.jpg",
+        "weapon": [
+            { "name": "hammer", "power": 200, "graphics": "🗡️", "effect": "💦" },
+            { "name": "gty","power": 500, "graphics": "🪃", "effect": "😵" },
+            { "name": "boom","power": 500, "graphics": "💣", "effect": "💥" }
+          ]
+    },
+    {
+        "name": "zoom3",
+        "xp": 20000,
+        "power": 90,
+        "avatar": "/assest/img/Monster.jpg",
+        "weapon": [
+            { "name": "hammer", "power": 20, "graphics": "🗡️", "effect": "😥" },
+            { "name": "boom","power": 50, "graphics": "🔪", "effect": "🎆" }
+          ]
+    },
+    {
+        "name": "zoom3",
+        "xp": 15000,
+        "power": 80,
+        "avatar": "/assest/img/Monster.jpg",
+        "weapon": [
+            { "name": "hammer", "power": 10, "graphics": "🗡️", "effect": "😥" },
+            { "name": "boom","power": 20, "graphics": "🔪", "effect": "🎆" }
+          ]
+    } ,
+    {
+        "name": "zoom3",
+        "xp": 10000,
+        "power": 70,
+        "avatar": "/assest/img/Monster.jpg",
+        "weapon": [
+            { "name": "hammer", "power": 10, "graphics": "🗡️", "effect": "😥" },
+            { "name": "boom","power": 20, "graphics": "🔪", "effect": "🎆" }
+          ]
+    }
+]
