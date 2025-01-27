@@ -21,7 +21,36 @@ function Map({userData}) {
 
     <div className="flex-item-column-center w-100 mt-120">
    
-    <span className='font-game-primary large-xx'>COMING SOON</span>
+    
+
+    <div className="map-colony">
+      <div className="map-colony-area">
+      <div className="map-colony-circle">
+        <div className="map-colony-title-sub">
+         <span className='font-game-primary medium'>Village</span>
+         <span className='font-game-primary small-xx'>Level 5+</span>
+      </div>
+      </div>
+      </div>
+
+      <div className="map-colony-area2">
+      <div className="map-colony-circle">
+        <div className="map-colony-title-sub">
+         <span className='font-game-primary medium'>Castle</span>
+         <span className='font-game-primary small-xx'>Level 20+</span>
+      </div>
+      </div>
+      </div>
+
+      <div className="map-colony-area3">
+      <div className="map-colony-circle">
+        <div className="map-colony-title-sub">
+         <span className='font-game-primary medium'>Castle</span>
+         <span className='font-game-primary small-xx'>Level 20+</span>
+      </div>
+      </div>
+      </div>
+    </div>
 
 
 

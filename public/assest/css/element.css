@@ -114,9 +114,13 @@ left: 5%;
     left: 50%;
     }
     .profile-activity-card .item3{
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        width: 6vw;
         position: absolute;
         top: 40%;
-        right: 10%;
+        right: 0;
         }
 
 
@@ -536,6 +540,7 @@ text-shadow:
     text-shadow: -1px -1px 0px #000000, -1px -1px 0px #0000008f, -1px 1px 0px #000000, -1px 1px 0px #000000, -1px 1px 0px #0000004f;
     
 }
+
 
 .text-align-center{
     text-align: center;

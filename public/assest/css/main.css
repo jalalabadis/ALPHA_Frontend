@@ -49,15 +49,16 @@ gap: 14px;
 
 
 /* =================Profile Frame============== */
-.user-profile-frame{
-    position: relative;
-    width: 40vw;
-    height: 36vw;
-    background-image: url('/assest/background/user-frame.png');
-    background-size: 40vw 36vw;
-    background-repeat: no-repeat;
-    background-position: center; 
-    
+.user-profile-frame {
+  position: relative;
+  width: 40vw;
+  height: 36vw;
+  max-width: 600px; /* সর্বাধিক প্রস্থ */
+  max-height: 600px; /* সর্বাধিক উচ্চতা */
+  background-image: url('/assest/background/user-frame.png');
+  background-size: 100% 100%; /* এটি নিশ্চিত করে যে ব্যাকগ্রাউন্ড পুরোপুরি ফ্রেমে ফিট করে */
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .profile-image-frame{
@@ -243,7 +244,12 @@ height: 14vw;
 .Adventure_game-bg{
     background-image: url('/assest/background/b3.jpg') !important;   
 }
-
+.Arena_game-bg{
+  background-image: url('/assest/background/b4.jpg') !important;   
+}
+.map-bg{
+  background-image: url('/assest/background/bg-map.png') !important;   
+}
 .bank-bg{
   background-image: url('/assest/background/bank.jpg') !important;   
 }
@@ -534,7 +540,7 @@ left: 1vw;
   width: 96%;
   height: 90px;
   background-image: url('/assest/background/stats.png');
-  background-size: 96% 90px;
+  background-size: 96% 100%;
   background-repeat: no-repeat;
   background-position: center;
   display: flex;
@@ -542,9 +548,14 @@ left: 1vw;
   justify-content: center;
   gap: 16px;
   padding: 0 12px;
-  margin-top: 16vh;
+  margin-top: 80px;
 }
 
+.shop-content-image-equipment{
+  cursor: pointer;
+  width: 55px;
+  height: 55px;
+}
 .shop-item-tooltip-content{
   display: flex;
   flex-direction: column;
@@ -605,8 +616,50 @@ text-shadow:
 
 
 
-
-
+.map-colony{
+ width: 100%;
+ height: 70vh;
+  }
+  .map-colony-area{
+    position: absolute;
+    top: 10px;
+    left: 60%;
+  }
+  .map-colony-area2{
+    position: absolute;
+    top: 180px;
+    left: 20%;
+  }
+  .map-colony-area3{
+    position: absolute;
+    top: 320px;
+    left: 60%;
+  }
+  .map-colony-circle {
+    cursor: pointer;
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border: 1px solid #FFFFFF;
+    background: #2e27376e;
+    border-radius: 50%;
+  }
+  
+  .map-colony-title-sub {
+    position: absolute;
+    top: -10px; /* বৃত্তের উপরের দিকে সরিয়ে নেওয়ার জন্য */
+    left: 50%; /* মাঝ বরাবর রাখার জন্য */
+    transform: translateX(-50%); /* মাঝ বরাবর সঠিকভাবে কেন্দ্রীভূত করার জন্য */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+  
+  .map-colony-title-sub span {
+    white-space: nowrap;
+  }
+  
 
 
 

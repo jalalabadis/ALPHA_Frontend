@@ -70,6 +70,7 @@ function Bank({userData}) {
             })
             .catch(err=>{
                 setStatus(false);
+                toast.error(err.response.data);
               console.log(err);
             })
           };
@@ -101,6 +102,7 @@ function Bank({userData}) {
             })
             .catch(err=>{
                 setStatus(false);
+                toast.error(err.response.data);
               console.log(err);
             })
           };

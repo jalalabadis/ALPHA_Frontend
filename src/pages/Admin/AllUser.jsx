@@ -4,10 +4,12 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Tooltip } from 'react-tooltip';
+import EditUserDataPopup from '../../popup/EditUserDataPopup';
 
 function AllUser() {
     const navigate=useNavigate();
     const [allUserData, setAllUserData]=useState();
+    const [editUserDataModel, setEditUserDataModel]=useState();
     const location = useLocation();
 
     /////////////////////
@@ -82,6 +84,18 @@ const handleUnBlock=(userID)=>{
 };
 
 
+///////
+const handelUserDataUpdate = (data) => {
+  const updatedUserData = allUserData.map(item => {
+    if (item.id === data.id) {
+      return { ...item, gold: data.gold, silver: data.silver, xp: data.xp }; // Return updated item
+    }
+    return item; // Return unchanged item
+  });
+
+  setAllUserData(updatedUserData); // Assuming you have a state to store allUserData
+  setEditUserDataModel(false);
+};
 
 
 //////////////////////////
@@ -105,7 +119,8 @@ const filteredData = allUserData?.filter((item) => {
           <th>Username</th>
           <th>Email</th>
           <th>Wallet</th>
-          <th>Balance</th>
+          <th>Silver</th>
+          <th>Gold</th>
           <th>Xp</th>
           <th>Status</th>
           <th>Action</th>
@@ -124,7 +139,8 @@ const filteredData = allUserData?.filter((item) => {
           {item.wallet}
         </Tooltip>
       </div></td>
-          <td>Silver: {Number(item.silver).toFixed()} Gold: {Number(item.gold).toFixed()}</td>
+          <td> {Number(item.silver).toFixed()} </td> 
+          <td> {Number(item.gold).toFixed()}</td>
           <td>{item.xp}</td>
           <td>{item.status}</td>
           <td>
@@ -132,6 +148,7 @@ const filteredData = allUserData?.filter((item) => {
            <button className="dashboard-table-delete-btn" onClick={()=>handleBlock(item.id)}>Block</button>:
            <button className="dashboard-table-delete-btn"  onClick={()=>handleUnBlock(item.id)}>UnBlock</button>
            }
+           <button className="dashboard-table-edit-btn"  onClick={()=>setEditUserDataModel(item)}>Edit</button>
           </td>
         </tr>
             )
@@ -140,6 +157,11 @@ const filteredData = allUserData?.filter((item) => {
        
       </tbody>
     </table>
+
+    {editUserDataModel&&
+      <EditUserDataPopup userData={editUserDataModel} 
+      onClose={()=>setEditUserDataModel(false)} onSuccess={(data)=>handelUserDataUpdate(data)}/>}
+
   </PageLayoutAdmin>
   )
 }

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Phaser from 'phaser';
 import WinPopup from './../../popup/WinPopup';
-import { getMonster } from '../../middlewares/getMonster';
 import fireJson from '../../data/fire.json';
 
 const GameFrame = ({userData, questJourney, onGameEnd}) => {
@@ -9,18 +8,19 @@ const GameFrame = ({userData, questJourney, onGameEnd}) => {
     const gameContainer = useRef(null);
 
   useEffect(() => {
-   console.log(questJourney)
-    const monster = questJourney?.game_type==="adventure"?getMonster(userData):questJourney?.player2;
+   console.log(questJourney);
+    const rounds = JSON.parse(questJourney.rounds);
+    const canvasWidth = window.innerWidth * 0.7;
+    const monster = questJourney?.player2;
     let playerHealth = Number(userData.userStats.healthPoints);
     let opponentHealth = monster.healthPoints;
-    let isPlayerTurn = Math.random() > 0.5;
     let gameResult = null;
 
 
    // Phaser Game Configuration
    const config = {
     type: Phaser.AUTO,
-    width: window.innerWidth * 0.7,
+    width: canvasWidth,
     height: window.innerHeight,
     parent: gameContainer.current,  // Attach Phaser to the React component
     scene: {
@@ -39,8 +39,10 @@ const GameFrame = ({userData, questJourney, onGameEnd}) => {
     function preload() {
       // Preload player image
       this.load.image('playerImage', '/assest/img/avatar.jpeg');
-      this.load.image('opponentImage', questJourney?.game_type==="adventure"?'/assest/img/Monster.jpg':'/assest/img/avatar.jpeg'); 
+      this.load.image('opponentImage', questJourney?.game_type==="adventure"?
+        `${process.env.REACT_APP_SERVER}/uploads/${monster.avatar}`:'/assest/img/avatar.jpeg'); 
       this.load.atlas('flares', 'assest/img/flares.png', fireJson); 
+      this.load.image('button', 'assest/background/btn-primary.png'); 
 
     }
 
@@ -188,7 +190,8 @@ const luckLabel = this.add.text(30, 390, 'Luck:', {
 
 
   // opponent
-  const opponent = this.add.container(590, 100);
+  const opponentX = canvasWidth - 300; // opponent কে ক্যানভাসের ডান দিকে রাখার জন্য পজিশন
+  const opponent = this.add.container(opponentX, 100); // opponent তৈরি
   const opponentGraphics = this.add.graphics();
   opponentGraphics.fillStyle(0x5B455E82, 0.5);
   opponentGraphics.fillRoundedRect(0, 0, 300,  480, 10);
@@ -228,7 +231,7 @@ borderLevel2.setDepth(99);
 opponent.add(borderLevel2);
 
 // Level text inside the circle
-const levelText2 = this.add.text(50, 40,  userData?.userStats.level, {
+const levelText2 = this.add.text(50, 40,  monster?.level, {
 fontSize: '35px',
 color: '#E0A51D',
 fontFamily: 'MedievalSharp',
@@ -325,35 +328,50 @@ opponent.add(luckValue2);
   
  
 
-// Function to calculate if a critical hit occurs
-function isCriticalHit(criticalChance) {
-  const randomValue = Math.random(); // Random number between 0 and 1
-  return randomValue < criticalChance;
-}
 
-function attack() { 
-  if (gameResult) return; // Stop if game is over
 
-  let attacker, target, targetHealthText, critChance, baseDamage, totalDamage;
 
-  if (isPlayerTurn) {
-    critChance = isCriticalHit(userData.userStats.critChance/100);
-    attacker = player;
-    target = opponent;
-    baseDamage = ((Math.floor(Math.random() * (userData.userStats.maxDamage - userData.userStats.minDamage + 1)) + userData.userStats.minDamage));
-    totalDamage = baseDamage*(critChance?2:1);
-    targetHealthText = opponentHealthText;
-  } else {
-    critChance = isCriticalHit(monster.critChance/100);
-    attacker = opponent;
-    target = player;
-    baseDamage = (Math.floor(Math.random() * (monster.maxDamage -monster.minDamage + 1)) + monster.maxDamage).toFixed();
-    totalDamage = baseDamage*(critChance?2:1);
-    targetHealthText = playerHealthText;
-  }
 
-  // Create weapon text for animation
-  const flame = this.add.particles(attacker.x, attacker.y, 'flares',
+// বোতাম তৈরি করুন
+const button = this.add.image((opponentX+120), 620, 'button')
+.setInteractive() // বোতামকে ক্লিক করার উপযোগী করুন
+.setScale(0.5); // বোতামের সাইজ ছোট করুন (ঐচ্ছিক)
+
+// বোতামে ক্লিক ইভেন্ট যোগ করুন
+button.on('pointerdown', () => {
+  handleButtonClick.call(this); // ক্লিক হলে এই ফাংশনটি কাজ করবে
+});
+
+// নির্দেশনা টেক্সট যোগ করুন
+this.add.text((opponentX+95), 607, 'Skip', {
+  fontSize: '26px',
+  color: '#F0DCAE',
+  fontFamily: 'MedievalSharp',
+  fontWeight: 500,
+  textShadow: '-3px 0 #000, 3px 0 #000,  0 -3px #000, 0 3px #000'
+});
+
+
+
+
+
+
+rounds.forEach((round, index) => {
+  setTimeout(() => {
+    if (!this || !this.add || !this.add.displayList) return; 
+    if (gameResult) return;
+    // round.attacker এর মান অনুযায়ী object বের করুন
+     let attackerObject;
+     let targetObject;
+      if (round.attacker === "player") {
+       attackerObject = player;
+       targetObject = opponent;
+      } else if (round.attacker === "opponent") {
+        attackerObject = opponent;
+        targetObject = player;
+       }
+   // Create weapon text for animation
+   const flame = this?.add?.particles(attackerObject.x, attackerObject.y, 'flares',
     {
         frame: 'white',
         color: [ 0x040d61, 0xfacc22, 0xf89800, 0xf83600, 0x9f0404, 0x4b4a4f, 0x353438, 0x040404 ],
@@ -365,12 +383,12 @@ function attack() {
         advance: 2000,
         blendMode: 'ADD'
     });
-    flame.setAngle(isPlayerTurn?270:90);
-  // Animate weapon
-  this.tweens.add({
+    flame.setAngle((round.attacker==='player')?270:90);
+  //Animate weapon
+  this?.tweens?.add({
     targets: flame,
-    y: target.y+10,
-    x: target.x,
+    y: targetObject.y+10,
+    x: targetObject.x,
     
     scaleX: 2,              
     scaleY: 2,   
@@ -378,80 +396,90 @@ function attack() {
     onComplete: () => {
       flame.destroy(); // Remove the weapon text after animation
 
-      // Display effect
-      const effectText = this.add.text(target.x+60, target.y+230, -totalDamage, { fontSize: '20px', color: 'red', fontWeight: 'bold' });
-      this.time.delayedCall(500, () => {
-        effectText.destroy(); // Remove effect after a short delay
-      });
+     // Display effect
+     const effectText = this?.add?.text(targetObject.x+60, targetObject.y+230, -round.damageDealt, { fontSize: '20px', color: 'red', fontWeight: 'bold' });
+     this?.time.delayedCall(500, () => {
+       effectText.destroy(); // Remove effect after a short delay
+     });
 
-      // 2x effect
-      if(critChance){
-      const effect2X = this.add.text(target.x+60, target.y+200, "2x", { fontSize: '35px', color: 'yellow', fontWeight: 'bold' });
-      this.time.delayedCall(500, () => {
-        effect2X.destroy(); // Remove effect after a short delay
-      });
-    }
+     // 2x effect
+     if(round.crit){
+     const effect2X = this?.add?.text(targetObject.x+60, targetObject.y+200, "2x", { fontSize: '35px', color: 'yellow', fontWeight: 'bold' });
+     this?.time.delayedCall(500, () => {
+       effect2X.destroy(); // Remove effect after a short delay
+     });
+   }
 
-     // Update health
-if (isPlayerTurn) {
-  opponentHealth = Math.max(0, opponentHealth - totalDamage);
-  targetHealthText.setText(`${opponentHealth}/${monster.healthPoints}`);
+
+   if (round.attacker==='player') {
+    opponentHealthText.setText(`${round.remainingHealth.Opponent}/${monster.healthPoints}`);
+    
+    // ProgressBar আপডেট করার আগে ক্লিয়ার করা
+    progressBar2.clear();
+    progressBar2.fillStyle(0x7E2929, 1);// রং আবার সেট করতে হবে কারণ clear() এটা সরিয়ে ফেলে
+    progressBar2.fillRoundedRect(51, 247, 190 * (round.remainingHealth.Opponent / monster.healthPoints), 15, 8);
   
-  // ProgressBar আপডেট করার আগে ক্লিয়ার করা
-  progressBar2.clear();
-  progressBar2.fillStyle(0x7E2929, 1);// রং আবার সেট করতে হবে কারণ clear() এটা সরিয়ে ফেলে
-  progressBar2.fillRoundedRect(51, 247, 190 * (opponentHealth / monster.healthPoints), 15, 8);
+   // যদি playerXP এর পরিমাণ ১০% এর কম হয়, তাহলে progressBar হাইড করে দিন
+   if ((round.remainingHealth.Opponent / monster.healthPoints) < 0.1) {
+    progressBar2.setVisible(false);
+  } else {
+    progressBar2.setVisible(true);
+  }
+  
+  
+  } else {
+    playerHealthText.setText(`${round.remainingHealth.Player}/${userData.userStats.healthPoints}`);
+  
+    // ProgressBar আপডেট করার আগে ক্লিয়ার করা
+    progressBar.clear();
+    progressBar.fillStyle(0x7E2929, 1);// রং আবার সেট করতে হবে
+    progressBar.fillRoundedRect(51, 247, 190 * (round.remainingHealth.Player / userData.userStats.healthPoints), 15, 8);
+  
+    // যদি opponentXP এর পরিমাণ ১০% এর কম হয়, তাহলে progressBar হাইড করে দিন
+    if ((round.remainingHealth.Player / userData.userStats.healthPoints) < 0.1) {
+      progressBar.setVisible(false);
+    } else {
+      progressBar.setVisible(true);
+    }
+  }
+    }
+  
+  });
+  }, index * 2000); // প্রতিটি রাউন্ড ২ সেকেন্ডের ব্যবধানে
+});
 
- // যদি playerXP এর পরিমাণ ১০% এর কম হয়, তাহলে progressBar হাইড করে দিন
- if ((opponentHealth / monster.healthPoints) < 0.1) {
-  progressBar2.setVisible(false);
-} else {
-  progressBar2.setVisible(true);
+
+// গেমের ফলাফল দেখানো
+setTimeout(() => {
+  if (!this || !this.add || !this.add.displayList) return; 
+  if (questJourney.winner_id=== userData.id) {
+            gameResult = 'Win';
+            setGameResult('Win');
+            this?.add?.text(300, 100, 'You Win!', { fontSize: '50px', fill: '#0f0' });
+            return;
+          } else  {
+            gameResult = 'Lost';
+            setGameResult('Lost');
+            this?.add?.text(300, 100, 'You Lost!', { fontSize: '50px', fill: '#f00' });
+          }
+}, rounds.length * 2000);
+
 }
 
-
-} else {
-  playerHealth = Math.max(0, (isNaN(playerHealth) ? 0 : playerHealth) - totalDamage);
-  targetHealthText.setText(`${playerHealth}/${userData.userStats.healthPoints}`);
-
-  // ProgressBar আপডেট করার আগে ক্লিয়ার করা
-  progressBar.clear();
-  progressBar.fillStyle(0x7E2929, 1);// রং আবার সেট করতে হবে
-  progressBar.fillRoundedRect(51, 247, 190 * (playerHealth / userData.userStats.healthPoints), 15, 8);
-
-  // যদি opponentXP এর পরিমাণ ১০% এর কম হয়, তাহলে progressBar হাইড করে দিন
-  if ((playerHealth / userData.userStats.healthPoints) < 0.1) {
-    progressBar.setVisible(false);
-  } else {
-    progressBar.setVisible(true);
+// ক্লিক ইভেন্টের জন্য ফাংশন
+function handleButtonClick() {
+  if (questJourney.winner_id=== userData.id) {
+    gameResult = 'Win';
+    setGameResult('Win');
+    this.add.text(300, 100, 'You Win!', { fontSize: '50px', fill: '#0f0' });
+    return;
+  } else  {
+    gameResult = 'Lost';
+    setGameResult('Lost');
+    this.add.text(300, 100, 'You Lost!', { fontSize: '50px', fill: '#f00' });
   }
 }
 
-
-      // Check game result
-      if (opponentHealth <= 0) {
-        gameResult = 'Win';
-        this.add.text(300, 100, 'You Win!', { fontSize: '50px', fill: '#0f0' });
-        setGameResult('Win');
-        return;
-      } else if (playerHealth <= 0) {
-        gameResult = 'Lost';
-        setGameResult('Lost');
-        this.add.text(300, 100, 'You Lost!', { fontSize: '50px', fill: '#f00' });
-        return;
-      }
-
-      // Switch turn and attack again after delay
-      isPlayerTurn = !isPlayerTurn;
-      this.time.delayedCall(2000, attack, [], this);
-    }
-  });
-}
-
-// Start the first attack
-this.time.delayedCall(2000, attack, [], this);
-       
-    }
 
 //////update
     function update() {}
@@ -467,8 +495,10 @@ this.time.delayedCall(2000, attack, [], this);
   style={{
     width: '100%',
     height: '100%',
-    backgroundColor: 'transparent',  // Use `backgroundColor` instead of `background`
+    backgroundColor: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center'  // Use `backgroundColor` instead of `background`
   }}
+
+  className='flex-item-line-center'
 >
 {gameResult&& <WinPopup result={gameResult} game_id={questJourney.id} questJourney={questJourney}   onConfirm={onGameEnd}/>}
 </div>

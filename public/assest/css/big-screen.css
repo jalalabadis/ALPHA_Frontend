@@ -1,0 +1,22 @@
+/* বড় স্ক্রিনের জন্য */
+@media screen and (min-width: 1300px) {
+    .page-name-bandage{
+        left: 40%;
+      }
+
+      .shop-equipment-list-content{
+        height: 120px;
+        gap: 20px;
+      }
+
+      .shop-content-image-equipment{
+        cursor: pointer;
+        width: 80px;
+        height: 80px;
+      }
+
+      .shop-content-image-equipment img{
+      width: 100% !important;
+      height: 100% !important;
+      }
+}

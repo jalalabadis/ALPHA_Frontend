@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import QuestPopup from '../popup/QuestPopup';
 import QuestBOARD from '../components/adventure/QuestBOARD';
 import ProgressBar from '../components/adventure/ProgressBar';
@@ -13,8 +13,39 @@ function Adventure({userData, onUpdateUserData, onBackground}) {
     const [gameSelect, setGameSelect]=useState();
     const [questSelect, setQuestSelect]=useState();
     const [journey, setJourney]=useState(false);
+    const [leftAdventure, setLeftAdventure]=useState();
+    const [leftArena, setLeftArena]=useState();
     const [gameStart, setGameStart]=useState(false);
 
+
+
+   const handelLeftFight = ()=>{
+    const cookie = Cookies.get('AuthToken');
+      if (cookie) { 
+        axios.post(`${process.env.REACT_APP_SERVER}/game/left`, 
+          {token: cookie})
+        .then(res=>{
+          setLeftAdventure(res.data.adventureData);
+          setLeftArena(res.data.arenaData);
+          console.log(res.data)
+        })
+        .catch(err=>{
+          setLeftAdventure();
+          setLeftArena();
+          console.log(err);
+
+        })
+      };
+   };
+
+    /////
+    useEffect(()=>{
+      handelLeftFight();
+      
+    },[]);
+
+
+    /////////////////
     const handelMakeGame=()=>{
         const cookie = Cookies.get('AuthToken');
         console.log(questSelect)
@@ -53,7 +84,9 @@ function Adventure({userData, onUpdateUserData, onBackground}) {
     onUpdateUserData("Adventure");
     onBackground(''); setGameSelect();
     setQuestSelect(); setJourney(false);
-    setGameStart(false)}}/>
+    setGameStart(false);
+    handelLeftFight();
+    }}/>
 }</>:
 journey?
 <div className="journey-content">
@@ -66,17 +99,30 @@ journey?
 <QuestBOARD onQuestSelect={item=>setQuestSelect(item)}/>
 :
     <div className="flex-item-line-center gap-large">
-        <div className="relative-img-area" onClick={()=>setGameSelect('Adventure_game', onBackground('quest-board-bg'))}>
+        <div className="relative-img-area" onClick={()=>{
+          leftAdventure?
+          setJourney(leftAdventure, setGameSelect('Adventure_game'), onBackground('journey-bg'))
+          
+          :
+          setGameSelect('Adventure_game', onBackground('quest-board-bg'))}}>
             <img src="/assest/background/ADVENTURE.jpg" alt="" />
-        
+        {leftAdventure&&
+          <span className='font-game-primary medium px1-shadow' style={{position: "absolute", top: "12px", left: "12px", color: '#01e645'}}>1 Fight left</span>
+        }
         <div className="item-text1 font-game-primary">ADVENTURE</div>
         </div>
 
         <div className="relative-img-area" 
-        onClick={()=>userData?.userStats.level>=5?setGameSelect('Arena_game'):toast.error("Minimum Level 5 Required")}>
+        onClick={()=>{
+          leftArena?
+          setJourney(leftArena, setGameSelect(), setQuestSelect(), onBackground(`Arena_game-bg`), setGameStart(true))
+          :
+          userData?.userStats.level>=5?setGameSelect('Arena_game'):toast.error("Minimum Level 5 Required")}}>
         <div className="bandge-text font-game-primary ">LVL 5 +</div>
             <img src="/assest/background/ARENA.jpg" alt="" />
             <div className="item-text2 font-game-primary">COMBAT ARENA</div>
+
+           {leftArena&& <span className='font-game-primary medium px1-shadow' style={{position: "absolute", top: "12px", left: "12px", color: '#01e645'}}>1 Fight left</span>}
         </div>
     </div>
 }
@@ -89,7 +135,9 @@ onConfirm={handelMakeGame}/>}
   setJourney(data); 
   setGameSelect();
   setQuestSelect();
+  onBackground(`Arena_game-bg`);
   setGameStart(true);
+
 }}/>}
 
 <ToastContainer/>

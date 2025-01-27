@@ -169,8 +169,8 @@ const handleDropToBackpack = (equippedItem) => {
 
 {shopEquipment?.slice(0, 6).map((item, index) => (
  <div key={index}  onClick={()=>setBuyEquipment(item)}
- className="weapons-item" data-tooltip-id={`tooltip-${item.id}`}
-style={{width: '55px', height: '55px', cursor: 'pointer'}} data-type={item.type}>
+ className="weapons-item shop-content-image-equipment" data-tooltip-id={`tooltip-${item.id}`}
+ data-type={item.type}>
                <img style={{width: '55px', height: '55px'}} 
                src={`${process.env.REACT_APP_SERVER}/uploads/${item.graphics}`} alt={`Weapon type: ${item.type}`} />
         <Tooltip id={`tooltip-${item.id}`} place="top" effect="solid" className='shop-item-tooltip-content gap-1'>

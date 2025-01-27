@@ -27,6 +27,7 @@ import LEADERBOARD from './pages/LEADERBOARD';
 import Map from './pages/Map';
 import SettingGame from './pages/SettingGame';
 import GameActivity from './pages/Admin/GameActivity';
+import Monster from './pages/Admin/Monster';
 
 function App() {
   const [background, setBackground]=useState('');
@@ -133,6 +134,7 @@ useEffect(() => {
     <Route path='/dashboard' element={<Dashboard/>}></Route>
     <Route path='/all-user' element={<AllUser/>}></Route>
     <Route path='/block-user' element={<AllUser/>}></Route>
+    <Route path='/monster' element={<Monster/>}></Route>
     <Route path='/equipment' element={<Equipment/>}></Route>
     <Route path='/equipment/:id' element={<Level/>}></Route>
     <Route path='/add-equipment' element={<AddEquipment/>}></Route>

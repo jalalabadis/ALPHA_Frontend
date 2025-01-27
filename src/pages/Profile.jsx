@@ -100,9 +100,9 @@ const handleDropToProfile = (backPackItem) => {
 
 {!characterEdit?
 <DndProvider backend={HTML5Backend}>
-<div className="content-item">
+<div className="content-item" style={{alignItems: 'flex-start'}}>
 <ProfileDropArea userData={userData}  profileEquipped={profileEquipped} handleDropToProfile={handleDropToProfile}/>
-<ProfileActivity userData={userData} onUpdateUserData={onUpdateUserData}/>
+<ProfileActivity userData={userData} onUpdateUserData={onUpdateUserData} screen={"Profile"}/>
 </div>
 
 <div className="content-item">

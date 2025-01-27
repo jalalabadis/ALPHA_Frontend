@@ -2,14 +2,15 @@ import React from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { ToastContainer, toast } from 'react-toastify';
+import { Tooltip } from 'react-tooltip';
 
-function ProfileActivity({userData, onUpdateUserData}) {
+function ProfileActivity({userData, onUpdateUserData, screen}) {
    const handelStatsUpdate=(statsType)=>{
       const cookie = Cookies.get('AuthToken');
       if (cookie) { 
         axios.post(`${process.env.REACT_APP_SERVER}/stats/${statsType}`, {token: cookie})
         .then(res=>{
-         onUpdateUserData();
+         onUpdateUserData(screen);
         })
         .catch(err=>{
          toast.error(err.response.data);
@@ -33,8 +34,21 @@ function ProfileActivity({userData, onUpdateUserData}) {
      <span className='font-game-primary large red'>+</span>
      </div></div>
     
-     <div className="sidebar-flex-item item3">
+     <div className="sidebar-flex-item item3" data-tooltip-id={`tooltip-Strength`}>
         <span className="font-game-primary medium">{userData?.userStats.totalStrength}</span>
+
+        <Tooltip id={`tooltip-Strength`} place="top" effect="solid" className='shop-item-tooltip-content gap-1'>
+       
+       <div className="flex-item-line-center gap-3">
+       <span className='font-game-primary small'>Regular Strength</span>
+       <span className='font-game-primary small'>{userData?.strength}</span>
+       </div>
+       <div className="flex-item-line-center gap-3">
+       <span className='font-game-primary small'>Equipment Strength</span>
+       <span className='font-game-primary small'>{(userData?.userStats.totalStrength)-(userData?.strength)}</span>
+       </div>
+       
+       </Tooltip>
      </div>
     </div>
     
@@ -51,8 +65,22 @@ function ProfileActivity({userData, onUpdateUserData}) {
      <span className='font-game-primary large red'>+</span>
      </div></div>
     
-     <div className="sidebar-flex-item item3">
+     <div className="sidebar-flex-item item3" 
+     data-tooltip-id={`tooltip-vitality`}>
         <span className="font-game-primary medium">{userData?.userStats.totalVitality}</span>
+
+        <Tooltip id={`tooltip-vitality`} place="top" effect="solid" className='shop-item-tooltip-content gap-1'>
+       
+       <div className="flex-item-line-center gap-3">
+       <span className='font-game-primary small'>Regular Vitality</span>
+       <span className='font-game-primary small'>{userData?.vitality}</span>
+       </div>
+       <div className="flex-item-line-center gap-3">
+       <span className='font-game-primary small'>Equipment Vitality</span>
+       <span className='font-game-primary small'>{(userData?.userStats.totalVitality)-(userData?.vitality)}</span>
+       </div>
+       
+       </Tooltip>
      </div>
     </div>
     
@@ -69,8 +97,21 @@ function ProfileActivity({userData, onUpdateUserData}) {
      <span className='font-game-primary large red'>+</span>
      </div></div>
     
-     <div className="sidebar-flex-item item3">
+     <div className="sidebar-flex-item item3" data-tooltip-id={`tooltip-luck`}>
         <span className="font-game-primary medium">{userData?.userStats.totalLuck}</span>
+
+        <Tooltip id={`tooltip-luck`} place="top" effect="solid" className='shop-item-tooltip-content gap-1'>
+       
+       <div className="flex-item-line-center gap-3">
+       <span className='font-game-primary small'>Regular Luck</span>
+       <span className='font-game-primary small'>{userData?.luck}</span>
+       </div>
+       <div className="flex-item-line-center gap-3">
+       <span className='font-game-primary small'>Equipment Luck</span>
+       <span className='font-game-primary small'>{(userData?.userStats.totalLuck)-(userData?.luck)}</span>
+       </div>
+       
+       </Tooltip>
      </div>
     </div>
     </div>
