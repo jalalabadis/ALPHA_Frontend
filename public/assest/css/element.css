@@ -526,6 +526,9 @@ text-shadow:
   .red{
     color: red !important;
   }
+  .green{
+    color: rgb(16, 134, 0) !important;
+  }
   .white{
     color: #ffffff !important;
   }

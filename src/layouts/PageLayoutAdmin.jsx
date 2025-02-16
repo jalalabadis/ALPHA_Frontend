@@ -31,6 +31,8 @@ function PageLayoutAdmin({ userData, setCurrentScreen, currentScreen, children, 
             <Link to="/equipment">Equipment</Link></li>
             <li className={`dashboard-menu-item ${location.pathname === '/game-activity' ? 'active' : ''}`}>
             <Link to="/game-activity">Game Activity</Link></li>
+            <li className={`dashboard-menu-item ${location.pathname === '/raids' ? 'active' : ''}`}>
+            <Link to="/raids">Raids</Link></li>
             <li className={`dashboard-menu-item ${location.pathname === '/deposit' ? 'active' : ''}`}>
             <Link to="/deposit">Deposit</Link></li>
             <li  className={`dashboard-menu-item ${location.pathname === '/withdraw' ? 'active' : ''}`}>

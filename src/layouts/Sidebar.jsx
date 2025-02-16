@@ -24,7 +24,7 @@ function Sidebar({userData, setCurrentScreen, currentScreen, onBackground}) {
     <div className="button-global">{userData?.xp} / {userData?.userStats.nextLevelXP}</div>
 </div>
 
-<div onClick={()=>setCurrentScreen('Profile')}
+<div onClick={()=>setCurrentScreen('Profile', onBackground('default'))}
  className={`button-global profile-element 
     ${currentScreen==='Profile'?'active':''}`}>
     <img src="/assest/img/avatar.jpeg" alt="" />
@@ -36,7 +36,7 @@ function Sidebar({userData, setCurrentScreen, currentScreen, onBackground}) {
         return (
           <div key={index} className='sidebar-menu-section'>
           <div
-          onClick={()=>setCurrentScreen(item.url, onBackground(item.bg))}
+          onClick={()=>{currentScreen!==item.url&&setCurrentScreen(item.url, onBackground(item.bg))}}
             className={`button-global px150x40 ${isActive ? 'active' : ''}`}
             style={{ fontSize: item.fontSize }}
           >

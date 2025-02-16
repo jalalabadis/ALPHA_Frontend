@@ -250,6 +250,9 @@ height: 14vw;
 .map-bg{
   background-image: url('/assest/background/bg-map.png') !important;   
 }
+.map-fight-bg{
+  background-image: url('/assest/background/map-fight.jpg') !important;   
+}
 .bank-bg{
   background-image: url('/assest/background/bank.jpg') !important;   
 }
@@ -620,11 +623,36 @@ text-shadow:
  width: 100%;
  height: 70vh;
   }
+
+  .map-container {
+    width: 100%;
+    height: 60vh;
+    overflow-y: auto;
+    position: relative;
+    padding: 20px 0;
+     /* স্ক্রলবার লুকানোর জন্য */
+  scrollbar-width: none; /* Firefox */
+  }
+
+  .map-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+  }
   .map-colony-area{
-    position: absolute;
-    top: 10px;
+    position: relative;
+  width: 250px;
+  height: 150px;
+  margin: 0;
+  }
+
+  .map-colony-right {
     left: 60%;
   }
+  
+  .map-colony-left {
+    left: 20%;
+  }
+  
+ 
   .map-colony-area2{
     position: absolute;
     top: 180px;
@@ -662,15 +690,111 @@ text-shadow:
   
 
 
+/* Map Square */
+.map-square-hkj-frame{
+  width: 45vw;
+  height: 40vw;
+  max-width: 600px;
+  max-height: 600px;
+  background-image: url('/assest/background/cbg.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.map-square-hkj-content{
+ margin-top: 12px;
+ display: flex;
+ align-items: center;
+ justify-content: flex-end;
+}
+
+.map-square-boss-img{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.map-square-boss-img .raid-camp-time-left{
+ position: absolute;
+ left: 25%;
+ bottom: 12px;
+}
+
+.map-square-boss-img .boss-img{
+  border: 5px solid #000000;
+  width: 20vw;
+  height: 18vw;
+  max-height: 280px;
+  max-width: 320px;
+}
 
 
 
 
 
+/* =====================================================================
+==================================================================
+================================================================================
+================================================================== */
+
+.tabset > label {
+  position: relative;
+  display: inline-block;
+  padding: 15px 15px 25px;
+  border: 1px solid transparent;
+  border-bottom: 0;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.tabset > label::after {
+  content: "";
+  position: absolute;
+  left: 15px;
+  bottom: 10px;
+  width: 22px;
+  height: 4px;
+  background: #8d8d8d;
+}
+
+
+.tabset > label:hover,
+.tabset > input:focus + label,
+.tabset > input:checked + label {
+  color: #06c;
+}
+
+.tabset > label:hover::after,
+.tabset > input:focus + label::after,
+.tabset > input:checked + label::after {
+  background: #06c;
+}
+
+.tabset > label.active {
+  border-color: #0509e2;
+  border-bottom: 1px solid #0509e2;
+  margin-bottom: -1px;
+}
+.tabset > label.active::after {
+  background: #06c;
+}
+
+.tab-panel {
+  padding: 30px 0;
+  border-top: 1px solid #ccc;
+}
 
 
 
 
+.tabset {
+  max-width: 65em;
+}
 
 
 

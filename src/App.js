@@ -28,6 +28,8 @@ import Map from './pages/Map';
 import SettingGame from './pages/SettingGame';
 import GameActivity from './pages/Admin/GameActivity';
 import Monster from './pages/Admin/Monster';
+import Raids from './pages/Admin/Raids';
+import Event from './pages/Admin/Event';
 
 function App() {
   const [background, setBackground]=useState('');
@@ -93,7 +95,8 @@ useEffect(() => {
       case 'GUILD':
         return <Guild userData={userData} setCurrentScreen={setCurrentScreen} currentScreen={currentScreen}/>;
       case 'MAP':
-          return <Map userData={userData} setCurrentScreen={setCurrentScreen} currentScreen={currentScreen}/>;
+          return <Map userData={userData} setCurrentScreen={setCurrentScreen} currentScreen={currentScreen} 
+           onUpdateUserData={(screen)=>handelUpdateUserData(screen)}  onBackground={bg=>setBackground(bg)}/>;
       case 'LEADERBOARD':
             return <LEADERBOARD userData={userData} setCurrentScreen={setCurrentScreen} currentScreen={currentScreen}/>;
       case 'Settings':
@@ -144,6 +147,8 @@ useEffect(() => {
     <Route path='/withdraw' element={<Withdraw/>}></Route>
     <Route path='/setting' element={<Setting/>}></Route>
     <Route path='/game-activity' element={<GameActivity/>}></Route>
+    <Route path='/raids' element={<Raids/>}></Route>
+    <Route path='/raid/:id' element={<Event/>}></Route>
     <Route path='*' element={<NotFound/>}></Route>
     </Routes>
    </BrowserRouter>

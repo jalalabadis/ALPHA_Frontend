@@ -23,7 +23,7 @@
         "url": "MAP",
         "fontSize": "20px",
         "bg": "map-bg",
-        "bandage": "COMING SOON"
+        "bandage": ""
     }, {
         "name": "LEADERBOARD",
         "url": "LEADERBOARD",

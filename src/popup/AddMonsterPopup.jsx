@@ -164,8 +164,8 @@ toast.error('Fill all info');
    
 
     <div className="dashboard-step-timeline-next">
-    <button className="dashboard-step-timeline-next-btn"
-    onClick={handelSubmit}>✓</button>
+    <button className="dashboard-table-edit-btn" style={{fontSize: '22px'}}
+    onClick={handelSubmit}>Add ✓</button>
   </div>
    </div>
    </div>
