@@ -81,7 +81,7 @@ function AddRaidsPopup({onClose, onSuccess}) {
 
 
     <div className="admin-hkj-login-input-group">
-          <label htmlFor="Strength" className="admin-hkj-login-label black-color">Max Participants</label>
+          <label htmlFor="Strength" className="admin-hkj-login-label black-color">Min Participants</label>
           <input
             type="number"
             id="Strength"

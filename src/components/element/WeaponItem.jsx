@@ -6,9 +6,7 @@ const WeaponItem = ({ item }) => {
     });
 
     return (
-      <div ref={dragRef} className="weapons-item" data-type={item.itemLevel.type}>
-       <img  src={`${process.env.REACT_APP_SERVER}/uploads/${item.itemLevel.graphics}`} alt={`Weapon type: ${item.itemLevel.type}`} />
-      </div>
+       <img ref={dragRef} data-type={item.itemLevel.type} src={`${process.env.REACT_APP_SERVER}/uploads/${item.itemLevel.graphics}`} alt={`Weapon type: ${item.itemLevel.type}`} />
     );
   };
 

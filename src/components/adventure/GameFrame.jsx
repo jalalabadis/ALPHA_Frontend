@@ -495,6 +495,7 @@ function handleButtonClick() {
   style={{
     width: '100%',
     height: '100%',
+    marginTop: '8%',
     backgroundColor: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center'  // Use `backgroundColor` instead of `background`
   }}
 

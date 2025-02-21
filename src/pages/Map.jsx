@@ -142,7 +142,7 @@ function Map({userData, onUpdateUserData, onBackground}) {
     {!gameStart?
      <div className="map-square-hkj-frame mt-120">
        <div className="flex-item-column-center gap-1 mt-7">
-         <span className='font-game-primary large-xx'>Magic Leprechaun</span>
+         <span className='font-game-primary large-xx-game'>Magic Leprechaun</span>
          <div className="flex-item-line-center mt-2">
           <span className='font-game-primary medium'>Actual prize: {selectRaidsData?.Raid?.reward}</span>
           <img src="/assest/img/gold.png" alt="" style={{width: "26px", height: "26px"}}/>
@@ -163,7 +163,7 @@ function Map({userData, onUpdateUserData, onBackground}) {
           </div>
 
           <div className="raid-camp-time-left">
-          <span className='font-game-primary large red'>{countdown}</span>
+          <span className='font-game-primary large red px1-shadow'>{countdown}</span>
           </div>
         </div>
        </div>

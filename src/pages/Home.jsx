@@ -37,8 +37,8 @@ function Home({ setIsLoading }) {
   };
 
   return (
-    <div className='home-page-content flex-item-column-center h-100'>
-      <img src="/assest/img/avatar.jpeg" alt="Avatar" />
+    <div className='layout-pages flex-item-column-center'>
+      <img className='home-page-content-img' src="/assest/img/avatar.jpeg" alt="Avatar" />
       {isLoading ? (
         <div className="progress-container3">
           <div className="progress-bar3" style={{ width: `${progress}%` }}></div>

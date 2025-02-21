@@ -1,5 +1,11 @@
 /* বড় স্ক্রিনের জন্য */
 @media screen and (min-width: 1300px) {
+  .sidebar-flex-item{
+    width: 32%;
+    }
+    .back-pack-footer{
+      margin-bottom: 4%;
+    }
     .page-name-bandage{
         left: 40%;
       }

@@ -234,7 +234,7 @@ shopType==="stable"?
 <DndProvider backend={HTML5Backend}>
 <div className="content-item">
 
-<div className="row w-100 mt-8">
+<div className="row w-100 mt-8" style={{marginTop: '22%'}}>
 
   {shopStable?.map((item, index)=>{
     return(

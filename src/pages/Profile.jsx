@@ -95,7 +95,7 @@ const handleDropToProfile = (backPackItem) => {
   <main className="content">
 
     <div className="page-name-bandage">
-    <div className="button-card px300">PROFILE</div>
+    <div className="button-card px-bandage">PROFILE</div>
     </div>
 
 {!characterEdit?

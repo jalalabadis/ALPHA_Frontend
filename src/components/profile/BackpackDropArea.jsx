@@ -13,11 +13,13 @@ const BackpackDropArea = ({userData, backPack, handleDropToBackpack}) => {
     return (
       <div className="back-pack-content">
       <div className="back-pack-item-area">
-      <div className="button-card" style={{marginLeft: '-40px'}}>BACKPACK</div>
+      <div className="button-card-backpack">BACKPACK</div>
           <div className="row backpack-weapons-list" ref={dropRef}>
             {backPack.map((item, index) => (
-              <div key={index} className="col-4 mb-1" data-tooltip-id={`tooltip-${item.id}`}>
+              <div key={index} className="col-4 mb-1" style={{height: '23%'}} data-tooltip-id={`tooltip-${item.id}`}>
+                <div className="weapons-item" style={{width: '80%', height: '100%'}}>
                 <WeaponItem item={item} />
+                </div>
 
         <Tooltip id={`tooltip-${item.id}`} place="top" effect="solid" className='shop-item-tooltip-content gap-1'>
        <span className='font-game-primary small'>{item.itemLevel.Equipment?.name}</span>
@@ -44,15 +46,15 @@ const BackpackDropArea = ({userData, backPack, handleDropToBackpack}) => {
             ))}
           </div>
 
-          <div className="back-pack-footer">
+   <div className="back-pack-footer">
     <div className="discard-item">
-<div dat-type={'drop'} className="weapons-item">
+<div dat-type={'drop'} className="weapons-item" style={{width: '80%'}}>
     <img src="/assest/img/weapons-red.png" alt="" />
 </div>
 <span>Discard</span>
     </div>
 
-    <div className="sidebar-flex-item">
+    <div className="sidebar-flex-item" style={{justifyContent:'flex-start'}}>
  <div className="flex-item-line-center">
     <img src="assest/img/silver.png" alt="" />
  <span>{userData.silver}</span>

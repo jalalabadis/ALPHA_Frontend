@@ -18,13 +18,13 @@ function ProfileActivity({userData, onUpdateUserData, screen}) {
       }
    };
   return (
-    <div className="profile-activity-content">
-    <div className="flex-item-column-center" style={{gap: '0'}}>
+   <div className="profile-activity-content">
+   <div className="flex-item-column-center" style={{gap: '0', width: '75%', height: '100%', alignItems: 'flex-start'}}>
     
     <div className="profile-activity-card">
     <div className="flex-item-column-center item1">
-        <div className="font-game-primary medium">Strenght</div>
-        <div className="font-game-primary small">{userData?.userStats.minDamage}-{userData?.userStats.maxDamage} DMG</div>
+        <div className="font-game-primary medium-game">Strenght</div>
+        <div className="font-game-primary small-game">{userData?.userStats.minDamage}-{userData?.userStats.maxDamage} DMG</div>
     </div>
     
     <div className="sidebar-flex-item item2" onClick={()=>handelStatsUpdate("strength")}>
@@ -35,17 +35,17 @@ function ProfileActivity({userData, onUpdateUserData, screen}) {
      </div></div>
     
      <div className="sidebar-flex-item item3" data-tooltip-id={`tooltip-Strength`}>
-        <span className="font-game-primary medium">{userData?.userStats.totalStrength}</span>
+        <span className="font-game-primary medium-game">{userData?.userStats.totalStrength}</span>
 
         <Tooltip id={`tooltip-Strength`} place="top" effect="solid" className='shop-item-tooltip-content gap-1'>
        
        <div className="flex-item-line-center gap-3">
-       <span className='font-game-primary small'>Regular Strength</span>
-       <span className='font-game-primary small'>{userData?.strength}</span>
+       <span className='font-game-primary small-game'>Regular Strength</span>
+       <span className='font-game-primary small-game'>{userData?.strength}</span>
        </div>
        <div className="flex-item-line-center gap-3">
-       <span className='font-game-primary small'>Equipment Strength</span>
-       <span className='font-game-primary small'>{(userData?.userStats.totalStrength)-(userData?.strength)}</span>
+       <span className='font-game-primary small-game'>Equipment Strength</span>
+       <span className='font-game-primary small-game'>{(userData?.userStats.totalStrength)-(userData?.strength)}</span>
        </div>
        
        </Tooltip>
@@ -54,8 +54,8 @@ function ProfileActivity({userData, onUpdateUserData, screen}) {
     
     <div className="profile-activity-card">
     <div className="flex-item-column-center justify-content-start item1">
-        <div className="font-game-primary medium">Vitality</div>
-        <div className="font-game-primary small">{userData?.userStats.healthPoints} HP</div>
+        <div className="font-game-primary medium-game">Vitality</div>
+        <div className="font-game-primary small-game">{userData?.userStats.healthPoints} HP</div>
     </div>
     
     <div className="sidebar-flex-item item2" onClick={()=>handelStatsUpdate("vitality")}>
@@ -67,17 +67,17 @@ function ProfileActivity({userData, onUpdateUserData, screen}) {
     
      <div className="sidebar-flex-item item3" 
      data-tooltip-id={`tooltip-vitality`}>
-        <span className="font-game-primary medium">{userData?.userStats.totalVitality}</span>
+        <span className="font-game-primary medium-game">{userData?.userStats.totalVitality}</span>
 
         <Tooltip id={`tooltip-vitality`} place="top" effect="solid" className='shop-item-tooltip-content gap-1'>
        
        <div className="flex-item-line-center gap-3">
-       <span className='font-game-primary small'>Regular Vitality</span>
-       <span className='font-game-primary small'>{userData?.vitality}</span>
+       <span className='font-game-primary small-game'>Regular Vitality</span>
+       <span className='font-game-primary small-game'>{userData?.vitality}</span>
        </div>
        <div className="flex-item-line-center gap-3">
-       <span className='font-game-primary small'>Equipment Vitality</span>
-       <span className='font-game-primary small'>{(userData?.userStats.totalVitality)-(userData?.vitality)}</span>
+       <span className='font-game-primary small-game'>Equipment Vitality</span>
+       <span className='font-game-primary small-game'>{(userData?.userStats.totalVitality)-(userData?.vitality)}</span>
        </div>
        
        </Tooltip>
@@ -86,8 +86,8 @@ function ProfileActivity({userData, onUpdateUserData, screen}) {
     
     <div className="profile-activity-card">
     <div className="flex-item-column-center item1">
-        <div className="font-game-primary medium">Luck</div>
-        <div className="font-game-primary small">{userData?.userStats.critChance}%</div>
+        <div className="font-game-primary medium-game">Luck</div>
+        <div className="font-game-primary small-game">{userData?.userStats.critChance}%</div>
     </div>
     
     <div className="sidebar-flex-item item2" onClick={()=>handelStatsUpdate("luck")}>
@@ -98,17 +98,17 @@ function ProfileActivity({userData, onUpdateUserData, screen}) {
      </div></div>
     
      <div className="sidebar-flex-item item3" data-tooltip-id={`tooltip-luck`}>
-        <span className="font-game-primary medium">{userData?.userStats.totalLuck}</span>
+        <span className="font-game-primary medium-game">{userData?.userStats.totalLuck}</span>
 
         <Tooltip id={`tooltip-luck`} place="top" effect="solid" className='shop-item-tooltip-content gap-1'>
        
        <div className="flex-item-line-center gap-3">
-       <span className='font-game-primary small'>Regular Luck</span>
-       <span className='font-game-primary small'>{userData?.luck}</span>
+       <span className='font-game-primary small-game'>Regular Luck</span>
+       <span className='font-game-primary small-game'>{userData?.luck}</span>
        </div>
        <div className="flex-item-line-center gap-3">
-       <span className='font-game-primary small'>Equipment Luck</span>
-       <span className='font-game-primary small'>{(userData?.userStats.totalLuck)-(userData?.luck)}</span>
+       <span className='font-game-primary small-game'>Equipment Luck</span>
+       <span className='font-game-primary small-game'>{(userData?.userStats.totalLuck)-(userData?.luck)}</span>
        </div>
        
        </Tooltip>
@@ -117,10 +117,10 @@ function ProfileActivity({userData, onUpdateUserData, screen}) {
     </div>
     
     
-    <div className="flex-item-column-center">
-        <div className="button-global">{userData?.xp}xp / {userData?.userStats.nextLevelXP}xp</div>
-        <div className="button-global">{userData.fame} PvP Fame</div>
-        <div className="button-global">NO GUILD</div>
+    <div className="flex-item-column-center" style={{width: '25%', height: '100%', alignItems: 'flex-start', justifyContent: 'flex-start'}}>
+        <div className="button-global" style={{width: '100%', height: '12%'}}>{userData?.xp}xp / {userData?.userStats.nextLevelXP}xp</div>
+        <div className="button-global" style={{width: '100%', height: '12%'}}>{userData.fame} PvP Fame</div>
+        <div className="button-global" style={{width: '100%', height: '12%'}}>NO GUILD</div>
     </div>
     <ToastContainer/>
     </div>

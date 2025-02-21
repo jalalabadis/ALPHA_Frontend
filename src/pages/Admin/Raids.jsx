@@ -90,7 +90,7 @@ const handleDelete=(raidID)=>{
           <th>ID</th>
           <th>Name</th>
           <th>min Level</th>
-          <th>max Participants</th>
+          <th>min Participants</th>
           <th>Entry Fee</th>
           <th>Reward</th>
           <th>Boss Power</th>
